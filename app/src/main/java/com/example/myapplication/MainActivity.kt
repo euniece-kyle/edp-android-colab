@@ -104,7 +104,7 @@ fun BusinessCard() {
                         .padding(28.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    // Step 3: Circular Avatar (Image)
+                   
                     Image(
                         painter = painterResource(id = R.drawable.project_photo),
                         contentDescription = "Profile Photo",
