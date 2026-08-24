@@ -3,30 +3,40 @@ package com.example.myapplication
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
-
-import com.example.myapplication.ui.theme.MyApplicationTheme
+import androidx.compose.ui.graphics.toArgb
+import androidx.core.view.WindowCompat
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+
+        WindowCompat.setDecorFitsSystemWindows(window, true)
+
         setContent {
-            MyApplicationTheme {
+            MaterialTheme {
+                val view = androidx.compose.ui.platform.LocalView.current
+                if (!view.isInEditMode) {
+                    SideEffect {
+                        val window = (view.context as ComponentActivity).window
+                        window.statusBarColor = androidx.compose.ui.graphics.Color.Transparent.toArgb()
+                        WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = true
+                    }
+                }
+
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Surface(
                         modifier = Modifier
                             .fillMaxSize()
-                            .padding(innerPadding),
-                        color = MaterialTheme.colorScheme.background
+                            .padding(innerPadding)
                     ) {
-                        ProfileScreen()
+                        RecipeApp()
                     }
                 }
             }
