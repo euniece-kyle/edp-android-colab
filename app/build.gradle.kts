@@ -4,16 +4,12 @@ plugins {
 }
 
 android {
-    namespace = "com.example.myapplication"
-    compileSdk {
-        version = release(37) {
-            minorApiLevel = 1
-        }
-    }
+    namespace = "edu.liceo.fieldkit"
+    compileSdk = 37
 
     defaultConfig {
-        applicationId = "com.example.myapplication"
-        minSdk = 32
+        applicationId = "edu.liceo.fieldkit"
+        minSdk = 26
         targetSdk = 37
         versionCode = 1
         versionName = "1.0"
@@ -40,6 +36,11 @@ android {
 dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
+    implementation(libs.lifecycle.runtime.compose)
+    implementation(libs.camera.camera2)
+    implementation(libs.camera.lifecycle)
+    implementation(libs.camera.compose)
+    implementation(libs.play.services.location)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
